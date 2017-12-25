@@ -19,7 +19,7 @@ module.exports = {
         maxAssetSize: 1024 * 500
     },
     devServer: {
-        contentBase: __dirname + '/src',
+        contentBase: __dirname + '/public',
         port: 8081,
         compress: true,
         overlay: {
