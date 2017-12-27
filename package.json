@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --color",
+    "dev": "webpack-dev-server --color -w",
     "build": "rm -rf dist && webpack -p",
     "analysis": "webpack --profile --json > analysis.json"
   },
