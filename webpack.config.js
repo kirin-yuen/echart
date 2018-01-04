@@ -15,7 +15,7 @@ module.exports = {
     // 检查文件大小与提示
     performance: {
         hints: 'warning',
-        maxEntrypointSize: 1024 * 500, 
+        maxEntrypointSize: 1024 * 500,
         maxAssetSize: 1024 * 500
     },
     devServer: {
@@ -29,17 +29,28 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [{
-                    loader: 'css-loader',
-                    options: {
-                        modules: true
-                    }
-                }, 'sass-loader']
-            }),
-        }]
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }, 'sass-loader']
+                }),
+            },
+            // template.js javascript模板引擎
+            {
+                test: /\.tmpl$/,
+                loader: 'templatejs-loader',
+                query: {
+                    sTag: '<#',
+                    eTag: '#>',
+                    expression: 'require("template_js")'
+                }
+            }
+        ]
     },
     plugins: [
         new HtmlPlugin(),

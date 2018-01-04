@@ -1,5 +1,8 @@
 // 中心数据
-var center = require('../data/data');
+var center = require('../data/center'),
+    // 使用js模板引擎
+    tpl = require('./tmpl/tooltip.tmpl');
+
 
 // echart的option配置项
 module.exports = {
@@ -8,7 +11,10 @@ module.exports = {
     },
     tooltip: {
         trigger: 'item',
-        formatter: '{a}<br/>{b}<br/>{c}<br/>{d}<br/>'
+        padding: [10, 15],
+        formatter: function(params, ticket, callback) {
+            return tpl({ params: params });
+        }
     },
     toolbox: {
         show: true,
@@ -31,15 +37,10 @@ module.exports = {
         },
         itemStyle: {
             normal: {
-                areaColor: '#E7E7E7',
                 borderColor: 'gray'
-            },
-            emphasis: {
-                //鼠标移上去的属性
-                areaColor: 'gray'
             }
         },
-        regions: []
+        selectedMode: 'single'
     },
     series: [{
             name: '全国服务中心',
